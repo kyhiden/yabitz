@@ -3,4 +3,3 @@ lib/yabitz/plugin/*_plugins
 log
 tmp/pids
 .tester_usernames
-Gemfile.lock

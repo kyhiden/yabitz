@@ -8,6 +8,6 @@ gem 'haml'
 gem 'sass'
 gem 'ruby-ldap'
 gem 'rspec'
-
+gem 'json'
 gem 'passenger'
 gem 'unicorn'

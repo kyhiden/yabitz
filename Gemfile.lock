@@ -1,0 +1,69 @@
+GIT
+  remote: git://github.com/tagomoris/stratum.git
+  revision: d763f84f3885a81bad263588f3f8e62a58d73b6f
+  specs:
+    stratum (0.1.0)
+      mysql2-cs-bind
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    diff-lcs (1.2.5)
+    haml (4.0.6)
+      tilt
+    json (1.8.3)
+    kgio (2.9.3)
+    mysql2 (0.3.18)
+    mysql2-cs-bind (0.0.6)
+      mysql2
+    passenger (5.0.10)
+      rack
+      rake (>= 0.8.1)
+    rack (1.6.2)
+    rack-protection (1.5.3)
+      rack
+    raindrops (0.13.0)
+    rake (10.4.2)
+    rspec (3.3.0)
+      rspec-core (~> 3.3.0)
+      rspec-expectations (~> 3.3.0)
+      rspec-mocks (~> 3.3.0)
+    rspec-core (3.3.0)
+      rspec-support (~> 3.3.0)
+    rspec-expectations (3.3.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-mocks (3.3.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.3.0)
+    rspec-support (3.3.0)
+    ruby-ldap (0.9.17)
+    sass (3.4.14)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    tilt (2.0.1)
+    unicorn (4.9.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  haml
+  json
+  mysql2
+  mysql2-cs-bind
+  passenger
+  rspec
+  ruby-ldap
+  sass
+  sinatra
+  stratum!
+  unicorn
+
+BUNDLED WITH
+   1.10.2

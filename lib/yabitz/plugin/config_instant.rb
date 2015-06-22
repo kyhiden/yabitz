@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+require 'json'
 module Yabitz::Plugin
   module InstantConfig
     def self.plugin_type
@@ -18,14 +18,14 @@ module Yabitz::Plugin
     end
 
     DB_PARAMS = [:server, :user, :pass, :name, :port, :sock]
-
+    mysql_dbs = JSON.parse(ENV['VCAP_SERVICES'])
     CONFIG_SET = {
       :database => {
-        :server => 'localhost',
-        :user => 'root',
-        :pass => nil,
-        :name => 'yabitz_instant',
-        :port => nil,
+        :server => mysql_dbs["p-mysql"][0]["credentials"]["hostname"],
+        :user => mysql_dbs["p-mysql"][0]["credentials"]["username"],
+        :pass => mysql_dbs["p-mysql"][0]["credentials"]["password"],
+        :name => mysql_dbs["p-mysql"][0]["credentials"]["name"],
+        :port => mysql_dbs["p-mysql"][0]["credentials"]["port"],
         :sock => nil,
       },
       :test_database => {

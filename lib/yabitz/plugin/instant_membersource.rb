@@ -2,6 +2,7 @@
 
 require 'digest/sha1'
 require 'mysql2-cs-bind'
+require 'json'
 
 module Yabitz::Plugin
   module InstantMemberHandler
@@ -9,13 +10,14 @@ module Yabitz::Plugin
       [:auth, :member]
     end
     def self.plugin_priority
-      0
+      1
     end
 
-    DB_HOSTNAME = "localhost"
-    DB_USERNAME = "root"
-    DB_PASSWORD = nil
-    DATABASE_NAME = "yabitz_member_source"
+    mysql_dbs = JSON.parse(ENV['VCAP_SERVICES'])
+    DB_HOSTNAME = mysql_dbs["p-mysql"][0]["credentials"]["hostname"]
+    DB_USERNAME = mysql_dbs["p-mysql"][0]["credentials"]["username"]
+    DB_PASSWORD = mysql_dbs["p-mysql"][0]["credentials"]["password"]
+    DATABASE_NAME = mysql_dbs["p-mysql"][0]["credentials"]["name"]
     TABLE_NAME = "list"
     def self.query(sql, *args)
       result = []

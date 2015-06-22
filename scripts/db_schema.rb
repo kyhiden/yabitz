@@ -2,6 +2,17 @@
 # -*- coding: utf-8 -*-
 
 require 'mysql2'
+require 'digest/sha1'
+
+## default user data
+TABLE_NAME = "list"
+USERNAME = "admin"
+PASSWORD = "password"
+FULLNAME = "default_adminuser"
+MAIL = ""
+BADGE = ""
+POSITION = ""
+PASSHASH = Digest::SHA1.hexdigest("#{PASSWORD}")
 
 # before require of schema.rb
 #  init.rb MUST be already loaded with $YABITZ_RUN_ON_TEST_ENVIRONMENT = true
@@ -349,6 +360,22 @@ operated_by INT             NOT NULL,
 head        ENUM('0','1')   NOT NULL DEFAULT '1',
 removed     ENUM('0','1')   NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB charset='utf8'
+EOSQL
+
+       sqls.push <<-EOSQL
+CREATE TABLE #{TABLE_NAME} (
+id          INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+name        VARCHAR(64)     NOT NULL UNIQUE KEY,
+passhash    VARCHAR(40)     NOT NULL,
+fullname    VARCHAR(64)     NOT NULL,
+mailaddress VARCHAR(256)    ,
+badge       VARCHAR(16)     ,
+position    VARCHAR(16)
+) ENGINE=InnoDB charset='utf8'
+EOSQL
+
+       sqls.push <<-EOSQL
+INSERT INTO #{TABLE_NAME} SET name='#{USERNAME}',passhash='#{PASSHASH}',fullname='#{FULLNAME}',mailaddress='#{MAIL}',badge='#{BADGE}',position='#{POSITION}'
 EOSQL
 
     c = conn()
